@@ -1,11 +1,6 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import { Inter } from 'next/font/google';
-import classNames from 'classnames';
 import styles from '@/styles/Home.module.css';
 import React, { useState } from 'react';
-
-const inter = Inter({ subsets: ['latin'] });
 
 import data from '../public/demographics.json';
 
@@ -71,13 +66,21 @@ const newData = (inputData: InputData): OutputData => {
 type PillProps = {
   item: ItemNew;
 };
-const Pill = ({ item, ...rest }: Props) => {
-  const { percent, percent_avg } = item;
-  const compared = Math.round(percent - percent_avg);
-
+const Pill = ({ item, ...rest }: PillProps) => {
+  const { percent, percent_avg_diff } = item;
   return (
     <div {...rest} className={styles.pill}>
-      <div className={styles.pillValue}>{percent}</div>
+      <div
+        className={`${styles.pillValue} ${
+          percent_avg_diff === 'above'
+            ? styles.pillValueGreen
+            : percent_avg_diff === 'below'
+            ? styles.pillValueRed
+            : ''
+        }`}
+      >
+        {percent} %
+      </div>
       <div className={styles.pillLabel}>{item.label}</div>
     </div>
   );
@@ -98,24 +101,25 @@ const Card = ({ item, ...rest }: CardProps) => {
   return (
     <div className={styles.card} {...rest}>
       <h2>{label}</h2>
-      <div>
+      <div className={styles.cardContent}>
         {showMore
           ? items.map((item, itemIndex) => <Pill item={item} key={itemIndex} />)
           : items
               .map((item, itemIndex) => <Pill item={item} key={itemIndex} />)
               .slice(0, 10)}
-        {isMore && (
-          <button onClick={handleClick}>
-            {isMore ? 'Zobrazit více' : 'Zobrazit méně'}
-          </button>
-        )}
       </div>
+      {isMore && (
+        <button onClick={handleClick} className={styles.pill}>
+          <div className={styles.pillLabel}>
+            {isMore ? 'Zobrazit více' : 'Zobrazit méně'}
+          </div>
+        </button>
+      )}
     </div>
   );
 };
 
 export default function Home() {
-  // console.log(data);
   const demographics = newData(data);
 
   const [filteredData, setFilteredData] = useState(demographics.data);
@@ -131,11 +135,7 @@ export default function Home() {
     items: Item[];
   }
 
-  function filterData(filterParam: 'above' | 'below' | 'all'): Group[] {
-    // if (!['above', 'below', 'all'].includes(filterParam)) {
-    //   throw new Error(`Invalid filter parameter '${filterParam}'. Valid parameters are 'above', 'below', or 'all'.`);
-    // }
-
+  function filterData(filterParam: 'above' | 'below' | 'all') {
     if (filterParam === 'all') {
       setFilteredData(demographics.data);
     } else {
@@ -169,9 +169,15 @@ export default function Home() {
         </div>
 
         <div className={styles.filter}>
-          <button onClick={() => filterData('all')}>Vse</button>
-          <button onClick={() => filterData('above')}>Nadpumer</button>
-          <button onClick={() => filterData('below')}>Podpumer</button>
+          <button onClick={() => filterData('all')} className={styles.pill}>
+            <div className={styles.pillLabel}>Vše</div>
+          </button>
+          <button onClick={() => filterData('above')} className={styles.pill}>
+            <div className={styles.pillLabel}>Nadprůměr</div>
+          </button>
+          <button onClick={() => filterData('below')} className={styles.pill}>
+            <div className={styles.pillLabel}>Podprůměr</div>
+          </button>
         </div>
 
         {filteredData.map((section, index) => (
