@@ -88,14 +88,27 @@ type CardProps = {
 
 const Card = ({ item, ...rest }: CardProps) => {
   const { label, items } = item;
+  const isMore = items.length > 10;
+  const [showMore, setShowMore] = useState(false);
+
+  const handleClick = () => {
+    setShowMore(!showMore);
+  };
 
   return (
     <div className={styles.card} {...rest}>
       <h2>{label}</h2>
       <div>
-        {items.map((item, itemIndex) => (
-          <Pill item={item} key={itemIndex} />
-        ))}
+        {showMore
+          ? items.map((item, itemIndex) => <Pill item={item} key={itemIndex} />)
+          : items
+              .map((item, itemIndex) => <Pill item={item} key={itemIndex} />)
+              .slice(0, 10)}
+        {isMore && (
+          <button onClick={handleClick}>
+            {isMore ? 'Zobrazit více' : 'Zobrazit méně'}
+          </button>
+        )}
       </div>
     </div>
   );
