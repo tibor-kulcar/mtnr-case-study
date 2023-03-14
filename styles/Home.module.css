@@ -5,45 +5,15 @@
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
+  font-family: sans-serif;
 }
 
 .description {
-  display: inherit;
-  justify-content: inherit;
-  align-items: inherit;
-  font-size: 0.85rem;
   max-width: var(--max-width);
   width: 100%;
   z-index: 2;
   font-family: var(--font-mono);
-}
-
-.description a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.description p {
-  position: relative;
-  margin: 0;
-  padding: 1rem;
-  background-color: rgba(var(--callout-rgb), 0.5);
-  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
-  border-radius: var(--border-radius);
-}
-
-.code {
-  font-weight: 700;
-  font-family: var(--font-mono);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(25%, auto));
-  width: var(--max-width);
-  max-width: 100%;
+  text-align: center;
 }
 
 .card {
@@ -71,6 +41,32 @@
   line-height: 1.5;
   max-width: 30ch;
 }
+
+
+.pill {
+  display:flex;
+  background-color: #666;
+
+  border-radius: 4px;
+}
+
+.pillValue {
+  padding: .3rem .1rem;
+  background-color: gray
+}
+.pillValueGreen {
+  background-color: green
+}
+.pillValueRed {
+  background-color: red
+}
+
+
+.pillLabel {
+  padding: .3rem .1rem;
+}
+
+
 
 .center {
   display: flex;
