@@ -1,0 +1,29 @@
+.button {
+  display: flex;
+  align-items: center;
+  background-color: lightBlue;
+  border-radius: var(--border-radius);
+  border: none;
+  font-size: var(--font-size);
+  cursor: pointer;
+}
+
+.buttonIcon {
+  width: calc(var(--base-unit) * 2);
+  height: calc(var(--base-unit) * 2);
+  padding: calc(var(--base-unit) / 2);
+  background-color: blue;
+  border-radius: 100%;
+}
+
+.buttonLabel {
+  padding: calc(var(--base-unit) / 2) var(--base-unit)
+    calc(var(--base-unit) / 2) calc(var(--base-unit) / 2);
+  line-height: 1;
+}
+
+.button:active,
+.button.active {
+  background-color: blue;
+  color: white;
+}

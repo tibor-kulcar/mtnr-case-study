@@ -1,0 +1,18 @@
+.card {
+  width: 100%;
+  padding: var(--base-unit) calc(var(--base-unit) * 1.5);
+}
+
+.cardContent {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--base-unit);
+}
+
+.cardTitle {
+  margin: var(--base-unit) 0;
+  font-weight: light;
+  text-transform: uppercase;
+  font-size: var(--font-size);
+}

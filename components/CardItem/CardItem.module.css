@@ -1,0 +1,30 @@
+.cardItem {
+  display: flex;
+  background-color: #efefef;
+  border-radius: var(--border-radius);
+  font-size: var(--font-size);
+  line-height: 1;
+}
+
+.cardItemValue {
+  display: block;
+  padding: calc(var(--base-unit) / 2) calc(var(--base-unit) * 0.7)
+    calc(var(--base-unit) / 2) var(--base-unit);
+  background-color: gray;
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+  min-width: calc(var(--base-unit) * 2.5);
+  text-align: right;
+  color: #fff;
+}
+.pillValueGreen {
+  background-color: green;
+}
+.pillValueRed {
+  background-color: red;
+}
+
+.cardItemLabel {
+  display: block;
+  padding: calc(var(--base-unit) / 2) var(--base-unit);
+}

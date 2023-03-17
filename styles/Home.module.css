@@ -3,9 +3,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 6rem;
+  padding: calc(var(--base-unit) * 6);
   min-height: 100vh;
-  font-family: sans-serif;
 }
 
 .description {
@@ -14,71 +13,4 @@
   z-index: 2;
   font-family: var(--font-mono);
   text-align: center;
-}
-
-.card {
-  width: 100%;
-  padding: 1rem 1.2rem;
-  border-radius: var(--border-radius);
-  background: rgba(var(--card-rgb), 0);
-  border: 1px solid rgba(var(--card-border-rgb), 0);
-  transition: background 200ms, border 200ms;
-}
-
-.card span {
-  display: inline-block;
-  transition: transform 200ms;
-}
-
-.card h2 {
-  font-weight: 600;
-  margin-bottom: 0.7rem;
-}
-
-.card p {
-  margin: 0;
-  opacity: 0.6;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  max-width: 30ch;
-}
-
-.cardContent {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.3rem;
-}
-
-.pill {
-  display: flex;
-  background-color: #efefef;
-  border-radius: 20px;
-}
-
-.pillValue {
-  display: block;
-  padding: 0.5rem;
-  background-color: gray;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  min-width: 2.5rem;
-  text-align: right;
-  color: #fff;
-}
-.pillValueGreen {
-  background-color: green;
-}
-.pillValueRed {
-  background-color: red;
-}
-
-.pillLabel {
-  display: block;
-  padding: 0.5rem;
-}
-
-.filter {
-  display: flex;
-  gap: 1rem;
 }
