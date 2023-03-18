@@ -17,6 +17,7 @@ type OutputData = {
 };
 
 const newData = (inputData: InputData): OutputData => {
+  console.log('dfsdfdsfdsfdsfdfdsfsdfsdfdsfdsf');
   const outputData: OutputData = {
     data: [],
   };
@@ -43,9 +44,9 @@ const newData = (inputData: InputData): OutputData => {
   return outputData;
 };
 
-export default function Home() {
-  const demographics = newData(data);
+const demographics = newData(data);
 
+export default function Home() {
   const [filteredData, setFilteredData] = useState(demographics.data);
 
   type Group = {
