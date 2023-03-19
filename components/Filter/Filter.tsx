@@ -45,6 +45,7 @@ const Filter = ({ onFilter }: FilterProps) => {
           icon={icon}
           active={active === filter}
           key={idx}
+          aria-label={filter}
         />
       ))}
     </div>

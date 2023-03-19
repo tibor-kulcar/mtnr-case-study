@@ -22,7 +22,7 @@ const Card = ({ item, limit = 10 }: CardProps) => {
 
   return (
     <div className={styles.card}>
-      <h2 className={styles.cardTitle}>{label}</h2>
+      <h3 className={styles.cardTitle}>{label}</h3>
       <div className={styles.cardContent}>
         {showMore
           ? items.map((item, itemIndex) => (
@@ -38,6 +38,7 @@ const Card = ({ item, limit = 10 }: CardProps) => {
             onClick={handleClick}
             label={!showMore ? 'Zobrazit více' : 'Zobrazit méně'}
             icon={!showMore ? mdiChevronDown : mdiChevronUp}
+            aria-expanded={showMore}
           />
         )}
       </div>

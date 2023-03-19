@@ -11,14 +11,13 @@
 .buttonIcon {
   width: calc(var(--base-unit) * 2);
   height: calc(var(--base-unit) * 2);
-  padding: calc(var(--base-unit) / 2);
+  padding: var(--half-unit);
   background-color: blue;
   border-radius: 100%;
 }
 
 .buttonLabel {
-  padding: calc(var(--base-unit) / 2) var(--base-unit)
-    calc(var(--base-unit) / 2) calc(var(--base-unit) / 2);
+  padding: var(--half-unit) var(--base-unit) var(--half-unit) var(--half-unit);
   line-height: 1;
 }
 

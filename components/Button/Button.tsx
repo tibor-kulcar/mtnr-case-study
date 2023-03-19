@@ -2,18 +2,17 @@ import React from 'react';
 
 import styles from './Button.module.css';
 
-type ButtonProps = {
-  label: string;
-  onClick?: () => void;
+type ButtonProps = React.ComponentPropsWithoutRef<'button'> & {
+  label?: string;
   icon?: string;
   active?: boolean;
 };
 
-const Button = ({ label, onClick, icon, active }: ButtonProps) => {
+const Button = ({ label, icon, active, ...buttonProps }: ButtonProps) => {
   return (
     <button
-      onClick={onClick}
-      className={`${styles.button} ${active && styles.active}`}
+      className={`${styles.button} ${active ? styles.active : ''}`}
+      {...buttonProps}
     >
       {icon && (
         <div className={styles.buttonIcon}>
@@ -26,7 +25,7 @@ const Button = ({ label, onClick, icon, active }: ButtonProps) => {
           </svg>
         </div>
       )}
-      <div className={styles.buttonLabel}>{label}</div>
+      {label && <div className={styles.buttonLabel}>{label}</div>}
     </button>
   );
 };

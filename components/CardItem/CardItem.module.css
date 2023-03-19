@@ -8,8 +8,8 @@
 
 .cardItemValue {
   display: block;
-  padding: calc(var(--base-unit) / 2) calc(var(--base-unit) * 0.7)
-    calc(var(--base-unit) / 2) var(--base-unit);
+  padding: var(--half-unit) calc(var(--base-unit) * 0.7) var(--half-unit)
+    var(--base-unit);
   background-color: gray;
   border-top-left-radius: var(--border-radius);
   border-bottom-left-radius: var(--border-radius);
@@ -17,14 +17,15 @@
   text-align: right;
   color: #fff;
 }
-.pillValueGreen {
+.cardItemValueGreen {
   background-color: green;
 }
-.pillValueRed {
+.cardItemValueRed {
   background-color: red;
 }
 
 .cardItemLabel {
   display: block;
-  padding: calc(var(--base-unit) / 2) var(--base-unit);
+  padding: var(--half-unit) var(--base-unit);
+  font-weight: normal;
 }

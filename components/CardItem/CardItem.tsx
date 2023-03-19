@@ -11,23 +11,25 @@ const CardItem = ({ item }: CardItemProps) => {
   const { percent, percent_avg_diff } = item;
 
   return (
-    <div className={styles.cardItem}>
+    <div className={styles.cardItem} aria-label="Card item">
       <div
         className={`
           ${styles.cardItemValue}
           ${
-            percent_avg_diff === NormalizedAvgParams.ABOVE &&
-            styles.pillValueGreen
+            percent_avg_diff === NormalizedAvgParams.ABOVE
+              ? styles.cardItemValueGreen
+              : ''
           }
           ${
-            percent_avg_diff === NormalizedAvgParams.BELOW &&
-            styles.pillValueRed
+            percent_avg_diff === NormalizedAvgParams.BELOW
+              ? styles.cardItemValueRed
+              : ''
           }
         `}
       >
         {`${percent}%`}
       </div>
-      <div className={styles.cardItemLabel}>{item.label}</div>
+      <h4 className={styles.cardItemLabel}>{item.label}</h4>
     </div>
   );
 };
