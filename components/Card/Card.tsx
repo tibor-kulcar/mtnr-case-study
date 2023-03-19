@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { mdiChevronDown, mdiChevronUp } from '@mdi/js';
 
+import { CategoryNew } from '@/types';
 import { Button } from '@/components/Button';
 import { CardItem } from '@/components/CardItem';
-import { CategoryNew } from '@/types';
 import styles from './Card.module.css';
 
 type CardProps = {

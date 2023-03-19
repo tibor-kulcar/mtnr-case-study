@@ -1,18 +1,24 @@
-export type DataItem = {
+export type Item = {
   label: string;
   percent: number;
   percent_avg: number;
 };
 
+export type Category = {
+  label: string;
+  items: Item[];
+};
+
+export enum NormalizedAvgParams {
+  ABOVE = 'ABOVE',
+  BELOW = 'BELOW',
+  NORMAL = 'NORMAL',
+}
+
 export type ItemNew = {
   label: string;
   percent: number;
-  percent_avg_diff: 'below' | 'normal' | 'above';
-};
-
-export type Category = {
-  label: string;
-  items: DataItem[];
+  percent_avg_diff: NormalizedAvgParams;
 };
 
 export type CategoryNew = {
@@ -21,7 +27,7 @@ export type CategoryNew = {
 };
 
 export enum FilterParams {
-  ABOVE = 'above',
-  BELOW = 'below',
-  ALL = 'all',
+  ABOVE = 'ABOVE',
+  BELOW = 'BELOW',
+  ALL = 'ALL',
 }

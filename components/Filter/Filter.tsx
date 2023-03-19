@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import styles from './Filter.module.css';
-import { Button } from '@/components/Button';
 import { mdiAccountGroup, mdiTrendingDown, mdiTrendingUp } from '@mdi/js';
+
 import { FilterParams } from '@/types';
+import { Button } from '@/components/Button';
+import styles from './Filter.module.css';
 
 const filterItems = [
   {
@@ -29,19 +30,20 @@ type FilterProps = {
 const Filter = ({ onFilter }: FilterProps) => {
   const [active, setActive] = useState(FilterParams.ALL);
 
-  const handleClick = (filter: FilterParams) => {
-    onFilter(filter);
-    setActive(filter);
+  const handleClick = (clickedFilter: FilterParams) => {
+    if (clickedFilter === active) return;
+    onFilter(clickedFilter);
+    setActive(clickedFilter);
   };
 
   return (
     <div className={styles.filter}>
-      {filterItems.map((filterItem, idx) => (
+      {filterItems.map(({ title, filter, icon }, idx) => (
         <Button
-          onClick={() => handleClick(filterItem.filter)}
-          label={filterItem.title}
-          icon={filterItem.icon}
-          active={active === filterItem.filter}
+          onClick={() => handleClick(filter)}
+          label={title}
+          icon={icon}
+          active={active === filter}
           key={idx}
         />
       ))}

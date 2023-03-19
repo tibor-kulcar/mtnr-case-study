@@ -3,8 +3,14 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: calc(var(--base-unit) * 6);
+  padding: var(--base-unit) 0;
   min-height: 100vh;
+}
+
+@media (min-width: 680px) {
+  .main {
+    padding: calc(var(--base-unit) * 6);
+  }
 }
 
 .description {
