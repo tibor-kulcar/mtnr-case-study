@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { mdiChevronDown, mdiChevronUp } from '@mdi/js';
 
 import { CategoryNew } from '@/types';
@@ -45,4 +45,4 @@ const Card = ({ item, limit = 10 }: CardProps) => {
   );
 };
 
-export default Card;
+export default memo(Card);
