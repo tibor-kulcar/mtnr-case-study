@@ -25,7 +25,7 @@ const transformData = (inputData: Category[]): CategoryNew[] => {
   });
 };
 
-export const fetcher = async (...args: [string, RequestInit?]) => {
+const fetcher = async (...args: [string, RequestInit?]) => {
   const response = await fetch(...args);
   const { title, subtitle, data } = await response.json();
 
@@ -35,3 +35,5 @@ export const fetcher = async (...args: [string, RequestInit?]) => {
     subtitle,
   };
 };
+
+export default fetcher;

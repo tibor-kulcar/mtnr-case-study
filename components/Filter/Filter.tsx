@@ -24,16 +24,14 @@ const filterItems = [
 ];
 
 type FilterProps = {
-  onFilter: (filter: FilterParams) => void;
+  activeFilter: FilterParams;
+  onFilter: ({}: FilterParams) => void;
 };
 
-const Filter = ({ onFilter }: FilterProps) => {
-  const [active, setActive] = useState(FilterParams.ALL);
-
+const Filter = ({ activeFilter, onFilter }: FilterProps) => {
   const handleClick = (clickedFilter: FilterParams) => {
-    if (clickedFilter === active) return;
+    if (clickedFilter === activeFilter) return;
     onFilter(clickedFilter);
-    setActive(clickedFilter);
   };
 
   return (
@@ -43,7 +41,7 @@ const Filter = ({ onFilter }: FilterProps) => {
           onClick={() => handleClick(filter)}
           label={title}
           icon={icon}
-          active={active === filter}
+          active={activeFilter === filter}
           key={idx}
           aria-label={filter}
         />

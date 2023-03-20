@@ -1,9 +1,10 @@
 import Head from 'next/head';
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import useSWR from 'swr';
 
-import { CategoryNew, FilterParams, NormalizedAvgParams } from '@/types';
-import { fetcher } from '@/libs/fetcher';
+import { FilterParams } from '@/types';
+import fetcher from '@/libs/fetcher';
+import filter from '@/libs/filter';
 import { Card } from '@/components/Card';
 import { Filter } from '@/components/Filter';
 import styles from '@/styles/Home.module.css';
@@ -11,49 +12,31 @@ import styles from '@/styles/Home.module.css';
 const dataUrl = '/data/demographics.json';
 
 export default function Home() {
-  const [filteredData, setFilteredData] = useState<CategoryNew[]>();
+  const [activeFilter, setActiveFilter] = useState(FilterParams.ALL);
   const { data, error, isLoading } = useSWR(dataUrl, fetcher);
 
-  useEffect(() => {
-    if (data && data.data) {
-      setFilteredData(data.data);
-    }
-  }, [data]);
+  console.time('filterData');
 
-  const filterData = useCallback(
-    (filter: FilterParams) => {
-      if (filter === FilterParams.ALL) {
-        setFilteredData(data?.data);
-      } else {
-        const filteredGroups = (data?.data || [])
-          .map((group) => {
-            const filteredItems = group.items.filter(
-              (item) => item.percent_avg_diff === NormalizedAvgParams[filter]
-            );
-            return filteredItems.length > 0
-              ? { ...group, items: filteredItems }
-              : null;
-          })
-          .filter(Boolean) as CategoryNew[];
-        setFilteredData(filteredGroups);
-      }
-    },
-    [setFilteredData, data]
-  );
+  const filteredData = useMemo(() => {
+    return data ? filter(data?.data, activeFilter) : [];
+  }, [activeFilter, data]);
+
+  console.timeEnd('filterData');
 
   return (
     <>
-      {isLoading ? (
+      {isLoading && (
         <>
           <main className={styles.main}>
             <h1>Čekám na data...</h1>
           </main>
         </>
-      ) : (
+      )}
+      {data && !isLoading && (
         <>
           <Head>
-            <title>{data?.title}</title>
-            <meta name="description" content={data?.subtitle} />
+            <title>{data.title}</title>
+            <meta name="description" content={data.subtitle} />
             <meta
               name="viewport"
               content="width=device-width, initial-scale=1"
@@ -63,13 +46,13 @@ export default function Home() {
 
           <main className={styles.main}>
             <div className={styles.description}>
-              <h1>{data?.subtitle}</h1>
-              <h2>{data?.title}</h2>
+              <h1>{data.subtitle}</h1>
+              <h2>{data.title}</h2>
             </div>
 
-            <Filter onFilter={filterData} />
+            <Filter activeFilter={activeFilter} onFilter={setActiveFilter} />
 
-            {filteredData?.map((section, index) => (
+            {filteredData.map((section, index) => (
               <Card key={index} item={section} />
             ))}
           </main>
