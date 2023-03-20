@@ -15,13 +15,13 @@ export default function Home() {
   const [activeFilter, setActiveFilter] = useState(FilterParams.ALL);
   const { data, error, isLoading } = useSWR(dataUrl, fetcher);
 
-  console.time('filterData');
+  // console.time('filterData');
 
   const filteredData = useMemo(() => {
     return data ? filter(data?.data, activeFilter) : [];
   }, [activeFilter, data]);
 
-  console.timeEnd('filterData');
+  // console.timeEnd('filterData');
 
   return (
     <>
